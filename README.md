@@ -1,4 +1,4 @@
-# Contribuir al proyecto Neon
+# Contribuir al proyecto Neon_linde
 
 ## Descripción rápida
 Este proyecto contiene scripts y configuraciones para procesar PDFs y generar contenido multimodal con Gemini. ¡Tu ayuda es bienvenida!
