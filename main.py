@@ -10,6 +10,14 @@ load_dotenv()
 
 app = FastAPI()
 
+@app.get("/test")
+async def test_endpoint():
+    """
+    Simple testing endpoint to verify the service is up.
+    Returns a JSON payload with a status message.
+    """
+    return JSONResponse(content={"status": "ok", "message": "Testing endpoint works!"})
+
 @app.post("/process")
 async def process_pdf_endpoint(file: UploadFile = File(...)):
     if not file.filename.endswith('.pdf'):
@@ -17,7 +25,6 @@ async def process_pdf_endpoint(file: UploadFile = File(...)):
     
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_pdf_path = os.path.join(temp_dir, file.filename)
-        temp_img_dir = os.path.join(temp_dir, "table_images")
         
         try:
             with open(temp_pdf_path, "wb") as buffer:

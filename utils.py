@@ -5,7 +5,6 @@ import pymupdf  # pymupdf (imported as `fitz` for brevity)
 import pymupdf4llm   # provides `to_markdown`
 from google import genai
 from google.genai import types
-import base64
 
 from constants import SYSTEM_PROMPT
 
@@ -125,11 +124,3 @@ def main(input_pdf: str, output_md: str = None, analysis_output: str = None):
         else:
             print("Analysis Result:")
             print(result)
-
-if __name__ == "__main__":
-    # Default configuration – can be overridden via environment variables or CLI args
-    INPUT_PDF = os.getenv("INPUT_PDF", "ES_ds_r_matic_s_1120_0119_es_a4_1.pdf")
-    # Defaults to None to avoid saving files
-    OUTPUT_MD = os.getenv("OUTPUT_MD", None) 
-    ANALYSIS_OUTPUT = os.getenv("ANALYSIS_OUTPUT", None)
-    main(INPUT_PDF, OUTPUT_MD, ANALYSIS_OUTPUT)
