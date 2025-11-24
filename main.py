@@ -28,11 +28,10 @@ async def test_endpoint():
     return JSONResponse(content={"status": "ok", "message": "Testing endpoint works!"})
 
 @app.post("/process")
-async def process_pdf_endpoint(file: UploadFile = File(...)):
-    if not file.filename.endswith('.pdf'):
-        raise HTTPException(status_code=400, detail="File must be a PDF")
-    
-    with tempfile.TemporaryDirectory() as temp_dir:
+def process_pdf_endpoint(file: UploadFile = File(...)):
+
+    return JSONResponse(content={"status": "ok", "message": "Processing PDF...","hola": file.filename})
+    """with tempfile.TemporaryDirectory() as temp_dir:
         temp_pdf_path = os.path.join(temp_dir, file.filename)
         
         try:
@@ -46,4 +45,4 @@ async def process_pdf_endpoint(file: UploadFile = File(...)):
             result_text = process_pdf(temp_pdf_path, model=model_name)
             return JSONResponse(content={"text": result_text})
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Processing failed: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Processing failed: {str(e)}")"""
